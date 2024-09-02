@@ -19,8 +19,8 @@ jobs:
     - name: Log in to DockerHub
       uses: docker/login-action@v2
       with:
-        username: ${{ secrets.DOCKERUSER }}
-        password: ${{ secrets.DOCKERSECRET }}
+        username: ${{ secrets.CLI_USER }}
+        password: ${{ secrets.CLI_SECRET }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
@@ -31,3 +31,4 @@ jobs:
 
     - name: Mask DockerHub project name
       run: echo "::add-mask::${{ secrets.DOCKERPROJECTIACONO }}"
+
