@@ -85,6 +85,10 @@ Abra o browser e digite na barra de endereços: localhost:3000 (ou 127.0.0.1:300
 #######################Ajustado e rodando até aqui 
 
 
+Detalhar aqui a parte do actions
+
+
+
 ############# a revisar: 
 Me ajude a elaborar o projeto que descrevi abaixo e faze-lo funcionar sem falhas, detalhando cada passo e exibindo os comandos necessários e seus parâmetros, bem como gerando os arquivos de configuração com os conteúdos necessários e os seus locais adequados na árvore de diretórios do projeto.
 

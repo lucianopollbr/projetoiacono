@@ -1,1 +1,2 @@
 Teste 1 - falha - gerar novo token para cli e substituir usuário e senha no cisite.yml 
+Teste 2 - falha - alterados usuário e senha
