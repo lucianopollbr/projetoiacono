@@ -1,3 +1,0 @@
-Testing GitHub Actions falhou
-
-Teste 2 Github Actions falhou

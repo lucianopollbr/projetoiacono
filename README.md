@@ -1,3 +1,91 @@
+#Estrutura do projeto
+
+projetoiacono/
+├── Dockerfile
+├── requirements.txt
+├── appsite.py
+└── site/
+    └── index.html
+
+#APP - appsite.py 
+
+from flask import Flask, send_from_directory
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return send_from_directory('site', 'index.html')
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=3000) 
+
+
+#Dockerfile 
+
+# Use uma imagem base oficial do Python
+FROM python:3.12.5-slim
+
+# Defina o diretório de trabalho dentro do container
+WORKDIR /projetoiacono
+
+# Copie o arquivo de requisitos e instale as dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copie o código da aplicação para o diretório de trabalho
+COPY . .
+
+# Exponha a porta que a aplicação irá usar
+EXPOSE 3000
+
+# Comando para rodar a aplicação
+CMD ["python", "appsite.py"]
+
+
+#Explicação dos Comandos
+
+FROM python:3.12.5-slim:
+Este comando define a imagem base para o container. Estamos usando uma versão leve do Python 3.12.5.
+
+WORKDIR /projetoiacono:
+Define o diretório de trabalho dentro do container. Todos os comandos subsequentes serão executados a partir deste diretório.
+
+COPY requirements.txt .:
+Copia o arquivo requirements.txt do seu diretório local para o diretório de trabalho no container.
+
+RUN pip install --no-cache-dir -r requirements.txt:
+Instala as dependências listadas no requirements.txt usando o pip. O parâmetro --no-cache-dir evita que o pip armazene em cache os pacotes instalados, economizando espaço.
+
+COPY . .:
+Copia todo o conteúdo do diretório local para o diretório de trabalho no container.
+
+EXPOSE 3000:
+Informa ao Docker que o container escutará na porta 3000 durante a execução.
+
+CMD [“python”, “appsite.py”]:
+Define o comando padrão a ser executado quando o container é iniciado. Neste caso, ele executa o script appsite.py usando o Python.
+
+#Comandos para Executar a Aplicação
+
+Construir a Imagem Docker
+Navegue até o diretório do projeto:
+cd /caminho/para/projetoiacono
+
+Construa a imagem Docker:
+docker build -t appsitecont .
+#Para fazer direto: docker build -t lucianopoll/appsitecont:cont01 . 
+
+Executar o Contêiner Docker
+Execute o contêiner Docker:
+docker run -d -p 3000:3000 appsitecont
+
+Abra o browser e digite na barra de endereços: localhost:3000 (ou 127.0.0.1:3000)
+
+#######################Ajustado e rodando até aqui 
+
+
+############# a revisar: 
 Me ajude a elaborar o projeto que descrevi abaixo e faze-lo funcionar sem falhas, detalhando cada passo e exibindo os comandos necessários e seus parâmetros, bem como gerando os arquivos de configuração com os conteúdos necessários e os seus locais adequados na árvore de diretórios do projeto.
 
 Projeto Flask API Iacono 
